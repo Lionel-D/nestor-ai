@@ -19,7 +19,7 @@ jobs:
         with:
           php-version: 8.1
           tools: composer:v2
-          extensions: mbstring, xml, ctype, iconv, intl, pdo, pdo_mysql, dom, filter, gd, iconv, json
+          extensions: mbstring, xml, ctype, iconv, intl, pdo, pdo_mysql, dom, filter, gd, iconv, json, pcov
         env:
           update: true
       - name: Check PHP version
@@ -33,9 +33,9 @@ jobs:
         env:
           DATABASE_URL: mysql://root@127.0.0.1:3306/nestor_ai_test?serverVersion=8&charset=utf8mb4
       - name: Run tests
-        run: bin/phpunit --coverage-clover
+        run: bin/phpunit --coverage-clover coverage.xml
       - name: Send code coverage report
         uses: aktions/codeclimate-test-reporter@v1
         with:
-          codeclimate-test-reporter-id: ebc43e6045353c7402997ceda5c13e7326b24ad66be8dbe1093eb40867717934
+          codeclimate-test-reporter-id: ${{ secrets.CC_TEST_REPORTER_ID }}
           command: after-build
