@@ -1,20 +1,31 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomeController!{% endblock %}
+{% block title %}Accueil{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+<div class="container py-4">
+    <h1 class="display-5">Hello {{ controller_name }}!</h1>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/Users/lioneldaelemans/Sites/nestor-ai/src/Controller/HomeController.php'|file_link(0) }}">src/Controller/HomeController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/Users/lioneldaelemans/Sites/nestor-ai/templates/home/index.html.twig'|file_link(0) }}">templates/home/index.html.twig</a></code></li>
+    <p class="lead">
+        This friendly message is coming from:
+    </p>
+    <ul class="text-muted">
+        <li>
+            Your controller at
+            <kbd>
+                <a href="{{ '/Users/lioneldaelemans/Sites/nestor-ai/src/Controller/HomeController.php'|file_link(0) }}" class="link-info">
+                    src/Controller/HomeController.php
+                </a>
+            </kbd>
+        </li>
+        <li>
+            Your template at
+            <kbd>
+                <a href="{{ '/Users/lioneldaelemans/Sites/nestor-ai/templates/home/index.html.twig'|file_link(0) }}" class="link-info">
+                    templates/home/index.html.twig
+                </a>
+            </kbd>
+        </li>
     </ul>
 </div>
 {% endblock %}
