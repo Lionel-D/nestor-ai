@@ -2,6 +2,9 @@
 
 *A grocery shopping list manager developped with help from chatGPT*
 
+[![Maintainability](https://api.codeclimate.com/v1/badges/80826c88f964169af11f/maintainability)](https://codeclimate.com/github/Lionel-D/nestor-ai/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/80826c88f964169af11f/test_coverage)](https://codeclimate.com/github/Lionel-D/nestor-ai/test_coverage)
+
 ---
 
 ### Requirements
