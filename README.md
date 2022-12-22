@@ -26,3 +26,9 @@
 ### Local environment
 
 - `symfony server:start` to launch local server.
+
+---
+
+### Tests
+
+- `php bin/phpunit` to execute tests.
