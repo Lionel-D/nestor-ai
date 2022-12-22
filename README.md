@@ -29,6 +29,7 @@
 
 ### Local environment
 
+- `yarn watch` to launch webpack and watch assets.
 - `symfony server:start` to launch local server.
 
 ---
