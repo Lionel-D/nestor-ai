@@ -27,6 +27,10 @@ jobs:
       - name: Install dependencies
         run: composer install
       - name: Set up database
-        run: bin/console doctrine:database:create
+        run: |
+          bin/console doctrine:database:drop --if-exists --force --env=test
+          bin/console doctrine:database:create --if-not-exists --env=test
+        env:
+          DATABASE_URL: mysql://root@127.0.0.1:3306/nestor_ai_test?serverVersion=8&charset=utf8mb4
       - name: Run tests
         run: bin/phpunit
