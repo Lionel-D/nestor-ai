@@ -24,14 +24,22 @@ jobs:
           update: true
       - name: Check PHP version
         run: php -v
-      - name: Install dependencies
+      - name: Composer install
         run: composer install
       - name: Set up database
         run: |
           bin/console doctrine:database:drop --if-exists --force --env=test
           bin/console doctrine:database:create --if-not-exists --env=test
         env:
-          DATABASE_URL: mysql://root@127.0.0.1:3306/nestor_ai_test?serverVersion=8&charset=utf8mb4
+          DATABASE_URL: 'mysql://root@127.0.0.1:3306/nestor_ai_test?serverVersion=8'
+      - name: Set up Node
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+      - name: Yarn install
+        run: yarn install
+      - name: Build assets with webpack
+        run: yarn build
       - name: Run tests
         run: bin/phpunit --coverage-clover ${{github.workspace}}/coverage.xml
       - name: Send code coverage report

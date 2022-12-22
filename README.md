@@ -23,11 +23,13 @@
 - create your `.env.local` based on `.env` and set values for your local environment.
 - `composer install` to get the framework dependencies.
 - `php bin/console doctrine:database:create` to create database.
+- `yarn install` to get the assets pipeline dependencies.
 
 ---
 
 ### Local environment
 
+- `yarn watch` to launch webpack and watch assets.
 - `symfony server:start` to launch local server.
 
 ---
