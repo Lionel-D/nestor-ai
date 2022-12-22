@@ -1,0 +1,42 @@
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    services:
+      mysql:
+        image: mysql:8.0
+        ports: ['3306:3306']
+        env:
+          MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+    steps:
+      - name: Git Checkout
+        uses: actions/checkout@v2
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.1
+          tools: composer:v2
+          extensions: mbstring, xml, ctype, iconv, intl, pdo, pdo_mysql, dom, filter, gd, iconv, json, pcov
+        env:
+          update: true
+      - name: Check PHP version
+        run: php -v
+      - name: Install dependencies
+        run: composer install
+      - name: Set up database
+        run: |
+          bin/console doctrine:database:drop --if-exists --force --env=test
+          bin/console doctrine:database:create --if-not-exists --env=test
+        env:
+          DATABASE_URL: mysql://root@127.0.0.1:3306/nestor_ai_test?serverVersion=8&charset=utf8mb4
+      - name: Run tests
+        run: bin/phpunit --coverage-clover ${{github.workspace}}/coverage.xml
+      - name: Send code coverage report
+        uses: paambaati/codeclimate-action@v3.2.0
+        env:
+          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+        with:
+          coverageLocations: ${{github.workspace}}/coverage.xml:clover
