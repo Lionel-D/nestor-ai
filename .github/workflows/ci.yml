@@ -37,6 +37,5 @@ jobs:
       - name: Send code coverage report
         uses: codeclimate/test-reporter-action@v1
         with:
-          env:
-            codeclimate-test-reporter-id: ebc43e6045353c7402997ceda5c13e7326b24ad66be8dbe1093eb40867717934
-            command: after-build
+          codeclimate-test-reporter-id: ebc43e6045353c7402997ceda5c13e7326b24ad66be8dbe1093eb40867717934
+          command: after-build
